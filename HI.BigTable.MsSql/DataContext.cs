@@ -14,7 +14,7 @@ namespace HI.BigTable.MsSql
             ConnectionString = connectionString;
         }
 
-        public void Insert(Item item)
+        public virtual void Insert(Item item)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -28,7 +28,7 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public void Insert(String name, Byte[] bytes)
+        public virtual void Insert(String name, Byte[] bytes)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -38,7 +38,7 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public void Update(Item item)
+        public virtual void Update(Item item)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -50,7 +50,7 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public void Update(String name, Byte[] bytes)
+        public virtual void Update(String name, Byte[] bytes)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -60,7 +60,7 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public void Delete(Guid itemUID)
+        public virtual void Delete(Guid itemUID)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -70,7 +70,7 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public void Delete(String name)
+        public virtual void Delete(String name)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -80,7 +80,7 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public T Select<T>(Guid itemUID) where T : Item
+        public virtual T Select<T>(Guid itemUID) where T : Item
         {
             var row = Select(itemUID);
 
@@ -98,7 +98,7 @@ namespace HI.BigTable.MsSql
             return item;
         }
 
-        public ItemRow Select(Guid itemUID)
+        public virtual ItemRow Select(Guid itemUID)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -110,7 +110,7 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public FileRow Select(String name)
+        public virtual FileRow Select(String name)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {

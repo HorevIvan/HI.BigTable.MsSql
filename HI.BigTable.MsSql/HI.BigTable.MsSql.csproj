@@ -4,16 +4,17 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>HI.BigTable.MsSql</AssemblyName>
     <RootNamespace>HI.BigTable.MsSql</RootNamespace>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>Horev Ivan</Authors>
     <Description>Methods for quick prototyping difficult models.
 You can add more specified columns: UserID, ParentID
 You can create database indexes and queries by function JSON_VALUE</Description>
     <Copyright>2019 Horev Ivan</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://xopeb.com/</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/HorevIvan/HI.BigTable.MsSql</PackageProjectUrl>
     <PackageTags>BigTable MsSql Startup Quick ORM</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageReleaseNotes>Main methods marked as virtual</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
