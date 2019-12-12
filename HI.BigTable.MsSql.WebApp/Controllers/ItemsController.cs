@@ -10,7 +10,7 @@ namespace HI.BigTable.MsSql.WebApp.Controllers
     public class ItemsController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public IEnumerable<string> Get(String type, [FromUri]int page)
         {
             return new string[] { "value1", "value2" };
         }
@@ -22,8 +22,9 @@ namespace HI.BigTable.MsSql.WebApp.Controllers
         }
 
         // POST api/values
-        public void Post(Guid uid, [FromBody]string value)
+        public void Post(Guid uid, HttpRequestMessage value, [FromUri]string type)
         {
+            var json = value.Content.ReadAsStringAsync().Result;
         }
 
         // PUT api/values/5
