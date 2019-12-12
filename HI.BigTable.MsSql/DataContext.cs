@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace HI.BigTable.MsSql
@@ -16,16 +18,11 @@ namespace HI.BigTable.MsSql
 
         public virtual void Insert(Item item)
         {
-            using (var connection = new SqlConnection(ConnectionString))
-            {
-                var sql = $"insert into Items (UID, Type, Data) values (@UID, @Type, @Data)";
+            var type = GetTypeName(item);
 
-                var type = GetTypeName(item);
+            var data = Serialize(item);
 
-                var data = Serialize(item);
-
-                connection.Execute(sql, new { UID = item.UID, Type = type, Data = data });
-            }
+            Insert(item.UID, data, type);
         }
 
         public virtual void Insert(String name, Byte[] bytes)
@@ -38,16 +35,21 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public virtual void Update(Item item)
+        public void Insert(Guid uid, String data, String type)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
-                var sql = $"update Items set Data = @Data where UID = @UID";
+                var sql = $"insert into Items (UID, Type, Data) values (@UID, @Type, @Data)";
 
-                var data = Serialize(item);
-
-                connection.Execute(sql, new { UID = item.UID, Data = data });
+                connection.Execute(sql, new { UID = uid, Type = type, Data = data });
             }
+        }
+
+        public virtual void Update(Item item)
+        {
+            var data = Serialize(item);
+
+            Update(item.UID, data);
         }
 
         public virtual void Update(String name, Byte[] bytes)
@@ -57,6 +59,16 @@ namespace HI.BigTable.MsSql
                 var sql = $"update File set Data = @Data where Name = name";
 
                 connection.Execute(sql, new { Data = bytes, Name = name });
+            }
+        }
+
+        public void Update(Guid uid, String data)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                var sql = $"update Items set Data = @Data where UID = @UID";
+
+                connection.Execute(sql, new { UID = uid, Data = data });
             }
         }
 
