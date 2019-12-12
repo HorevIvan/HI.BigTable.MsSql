@@ -16,7 +16,7 @@ namespace HI.BigTable.MsSql.WebApp
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{uid}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }
