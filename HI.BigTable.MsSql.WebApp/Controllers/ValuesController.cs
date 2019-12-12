@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace HI.BigTable.MsSql.WebApp.Controllers
 {
-    public class ValueController : ApiController
+    public class ValuesController : ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()
