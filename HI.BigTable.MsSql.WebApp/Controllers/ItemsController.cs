@@ -1,38 +1,39 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
 namespace HI.BigTable.MsSql.WebApp.Controllers
 {
+    [BigTable]
     public class ItemsController : ApiController
     {
-        // GET api/values
+        // GET api/items
         public IEnumerable<string> Get(String type, [FromUri]int page)
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        // GET api/items/5
         public string Get(String uid)
         {
             return "value";
         }
 
-        // POST api/values
+        // POST api/items
         public void Post(String uid, HttpRequestMessage value, [FromUri]string type)
         {
             var json = value.Content.ReadAsStringAsync().Result;
         }
 
-        // PUT api/values/5
+        // PUT api/items/5
         public void Put(String uid, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE api/items/5
         public void Delete(String uid)
         {
         }

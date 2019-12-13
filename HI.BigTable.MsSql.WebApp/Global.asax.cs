@@ -18,6 +18,12 @@ namespace HI.BigTable.MsSql.WebApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            BigTableAttribute.ConnectionString = "Data Source=.;Integrated Security=True";
+
+            BigTableAttribute.DatabaseDirectory = "D:\\Data";
+
+            BigTableAttribute.DatabaseName = "BIG_TABLE";
         }
     }
 }
