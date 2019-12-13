@@ -23,6 +23,17 @@ namespace HI.BigTable.MsSql.WebApp
             BigTableAttribute.ConnectionString = "Data Source=.;Integrated Security=True";
             BigTableAttribute.DatabaseDirectory = "D:\\Data";
             BigTableAttribute.DatabaseName = "BIG_TABLE";
+
+            RegisterApis(GlobalConfiguration.Configuration);
+        }
+
+        public static void RegisterApis(HttpConfiguration config)
+        {
+            var matches = config.Formatters
+                .Where(f => f.SupportedMediaTypes.Where(m => m.MediaType.ToString() == "application/xml" || m.MediaType.ToString() == "text/xml").Count() > 0)
+                .ToList();
+
+            foreach (var match in matches) config.Formatters.Remove(match);
         }
     }
 }

@@ -24,17 +24,17 @@ namespace HI.BigTable.MsSql.WebApp.Controllers
         // POST api/items
         public void Post(String uid, HttpRequestMessage value, [FromUri]string type)
         {
-            var json = value.Content.ReadAsStringAsync().Result;
+            var data = value.Content.ReadAsStringAsync().Result;
 
-            DataContext.Insert(uid, json, type);
+            DataContext.Insert(uid, data, type);
         }
 
         // PUT api/items/5
         public void Put(String uid, HttpRequestMessage value)
         {
-            var json = value.Content.ReadAsStringAsync().Result;
+            var data = value.Content.ReadAsStringAsync().Result;
 
-            DataContext.Update(uid, json);
+            DataContext.Update(uid, data);
         }
 
         // DELETE api/items/5
