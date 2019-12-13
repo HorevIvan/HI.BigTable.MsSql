@@ -6,7 +6,7 @@ namespace HI.BigTable.MsSql
 {
     public class ItemRow
     {
-        public Guid UID { set; get; }
+        public String UID { set; get; }
 
         public String Type { set; get; }
 

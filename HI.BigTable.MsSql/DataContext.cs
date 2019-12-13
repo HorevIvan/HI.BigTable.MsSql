@@ -25,7 +25,7 @@ namespace HI.BigTable.MsSql
             Insert(item.UID, data, type);
         }
 
-        public virtual void Insert(String name, Byte[] bytes)
+        public virtual void InsertFile(String name, Byte[] bytes)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -35,7 +35,7 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public void Insert(Guid uid, String data, String type)
+        public void Insert(String uid, String data, String type)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -62,7 +62,7 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public void Update(Guid uid, String data)
+        public void Update(String uid, String data)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -72,7 +72,7 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public virtual void Delete(Guid itemUID)
+        public virtual void Delete(String itemUID)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -82,7 +82,7 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public virtual void Delete(String name)
+        public virtual void DeleteFile(String name)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -92,7 +92,7 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public virtual T Select<T>(Guid itemUID) where T : Item
+        public virtual T Select<T>(String itemUID) where T : Item
         {
             var row = Select(itemUID);
 
@@ -110,7 +110,7 @@ namespace HI.BigTable.MsSql
             return item;
         }
 
-        public virtual ItemRow Select(Guid itemUID)
+        public virtual ItemRow Select(String itemUID)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {
@@ -122,7 +122,7 @@ namespace HI.BigTable.MsSql
             }
         }
 
-        public virtual FileRow Select(String name)
+        public virtual FileRow SelectFile(String name)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {

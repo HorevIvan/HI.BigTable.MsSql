@@ -6,6 +6,6 @@ namespace HI.BigTable.MsSql
     public abstract class Item
     {
         [JsonIgnore]
-        public Guid UID { set; get; } = Guid.NewGuid();
+        public String UID { set; get; }
     }
 }

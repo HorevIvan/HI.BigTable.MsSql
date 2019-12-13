@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace HI.BigTable.MsSql
+namespace HI.BigTable.MsSql.WebApp.Controllers
 {
     public class BigTableAttribute : ActionFilterAttribute
     {
@@ -30,6 +30,11 @@ namespace HI.BigTable.MsSql
                 {
                     Databases[databaseName] = database;
                 }
+            }
+
+            if (actionContext.ControllerContext.Controller is BigTableController itemsController)
+            {
+                itemsController.DataContext = Databases[databaseName].GetDataContext();
             }
 
             return;
