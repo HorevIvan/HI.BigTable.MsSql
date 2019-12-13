@@ -8,6 +8,10 @@ namespace HI.BigTable.MsSql
     {
         public String ConnectionString { get; }
 
+        public String ItemsKey { set; get; } = "varchar(50)";
+
+        public String FilesKey { set; get; } = "varchar(850)";
+
         public Database(String connectionString)
         {
             ConnectionString = connectionString;
@@ -26,13 +30,13 @@ namespace HI.BigTable.MsSql
         {
             using (var connection = GetConnection())
             {
-                const string items = "create table Items(DBID bigint identity not null primary key,UID uniqueidentifier not null unique,Type varchar(50) not null index IX_Items_Type,Data nvarchar(max) not null)";
+                var itemsTable = $"create table Items(DBID bigint identity not null primary key,UID {ItemsKey} not null unique,Type varchar(50) not null index IX_Items_Type,Data nvarchar(max) not null)";
 
-                connection.Execute(items);
+                connection.Execute(itemsTable);
 
-                const string files = "create table Files(DBID int identity not null primary key,Name nvarchar(850) not null unique,Data varbinary(max) not null)";
+                var filesTable = $"create table Files(DBID int identity not null primary key,Name {FilesKey} not null unique,Data varbinary(max) not null)";
 
-                connection.Execute(files);
+                connection.Execute(filesTable);
             }
         }
 

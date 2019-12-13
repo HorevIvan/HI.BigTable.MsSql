@@ -16,24 +16,24 @@ namespace HI.BigTable.MsSql.WebApp.Controllers
         }
 
         // GET api/values/5
-        public string Get(Guid uid)
+        public string Get(String uid)
         {
             return "value";
         }
 
         // POST api/values
-        public void Post(Guid uid, HttpRequestMessage value, [FromUri]string type)
+        public void Post(String uid, HttpRequestMessage value, [FromUri]string type)
         {
             var json = value.Content.ReadAsStringAsync().Result;
         }
 
         // PUT api/values/5
-        public void Put(Guid uid, [FromBody]string value)
+        public void Put(String uid, [FromBody]string value)
         {
         }
 
         // DELETE api/values/5
-        public void Delete(Guid uid)
+        public void Delete(String uid)
         {
         }
     }
