@@ -1,6 +1,7 @@
 using HI.BigTable.MsSql.WebApp.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -20,9 +21,9 @@ namespace HI.BigTable.MsSql.WebApp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            BigTableAttribute.ConnectionString = "Data Source=.;Integrated Security=True";
-            BigTableAttribute.DatabaseDirectory = "D:\\Data";
-            BigTableAttribute.DatabaseName = "BIG_TABLE";
+            BigTableAttribute.ConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
+            BigTableAttribute.DatabaseDirectory = ConfigurationManager.AppSettings["DatabaseDirectory"];
+            BigTableAttribute.DatabaseName = ConfigurationManager.AppSettings["DatabaseName"];
 
             RegisterApis(GlobalConfiguration.Configuration);
         }
