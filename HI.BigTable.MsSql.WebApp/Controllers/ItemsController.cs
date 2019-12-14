@@ -3,16 +3,18 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace HI.BigTable.MsSql.WebApp.Controllers
 {
     public class ItemsController : BigTableController
     {
         // GET api/items
-        public IEnumerable<string> Get(String type, [FromUri]int page)
+        public JsonResult<Item[]> Get([FromUri]String type, [FromUri]int page)
         {
-            return new string[] { "value1", "value2" };
+            return Json(DataContext.SelectPage(page, type));
         }
 
         // GET api/items/5
@@ -22,9 +24,9 @@ namespace HI.BigTable.MsSql.WebApp.Controllers
         }
 
         // POST api/items
-        public void Post(String uid, HttpRequestMessage value, [FromUri]string type)
+        public async Task Post(String uid, HttpRequestMessage value, [FromUri]string type)
         {
-            var data = value.Content.ReadAsStringAsync().Result;
+            var data = await value.Content.ReadAsStringAsync();
 
             DataContext.Insert(uid, data, type);
         }

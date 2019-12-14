@@ -25,6 +25,16 @@ namespace HI.BigTable.MsSql
             Insert(item.UID, data, type);
         }
 
+        public Item[] SelectPage(Int32 page, String type)
+        {
+            //using (var connection = new SqlConnection(ConnectionString))
+            //{
+            //    var sql = $"select * from Items where  ";
+            //}
+
+            return new Item[0];
+        }
+
         public virtual void InsertFile(String name, Byte[] bytes)
         {
             using (var connection = new SqlConnection(ConnectionString))
