@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace HI.BigTable.MsSql
+namespace HI.BigTable
 {
     public abstract class Item
     {

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
@@ -18,9 +20,12 @@ namespace HI.BigTable.MsSql.WebApp.Controllers
         }
 
         // GET api/items/5
-        public string Get(String uid)
+        public HttpResponseMessage Get(String uid)
         {
-            return DataContext.Select(uid).Data;
+            var json = DataContext.Select(uid).Data;
+            var response = this.Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StringContent(json, Encoding.UTF8, "application/json");
+            return response;
         }
 
         // POST api/items
